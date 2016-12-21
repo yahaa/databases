@@ -54,3 +54,9 @@ select season ,crouse_id,crouse_time from open_crouse where work_id=(select work
 
 select crouse_id,crouse_name,from crouse where crouse_id  in (select crouse_id, work_id from select_table where score_f>=60 and student_id in (select student_id from student where sex='男'));
 
+//第五问
+select student_id,name from student where student_id >(select student_id from student where name='张颖') and brithday > (select brithday from student where name='张颖');
+
+//第六问
+
+select student_id ,name from student where student_id in (select distinct student_id from select_table where student_id in (select student_id from select_table where crouse_id='8305001') and student_id in (select student_id from select_table where crouse_id='8305002'));

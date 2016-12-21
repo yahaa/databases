@@ -78,4 +78,26 @@ alter table student add index index1(institue_id asc,name desc);
 alter table crouse add index2(crouse_name);
 
 
+//第三次实验
+第一问
+先用Java 生成 1000万条记录保存到 本地 命名为 data.csv
+
+用如下命令导数数据到学生表
+load data infile '/var/log/test.csv' into table `student` 
+fields terminated by ',' optionally enclosed by '"' escaped by '"' 
+lines terminated by '\n'; 
+
+
+第二问
+select student.student_id, crouse_id
+from student left join select_table on student.student_id = select_table.student_id
+第三问
+select student_id from student where not exists 
+(select select_table.student_id from  open_crouse left join select_table  on open_crouse.crouse_id=select_table.crouse_id 
+where open_crouse.crouse_id in (select crouse_id from open_crouse) and open_crouse.crouse_id 
+not in (select crouse_id from select_table where student_id=select_table.student_id))
+
+
+
+
 

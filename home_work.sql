@@ -1,5 +1,7 @@
 第一步创建数据库
 
+create database spring_user default character set utf8 collate utf8_general_ci;
+
 create table s(
 	sno int not null,
 	sname varchar(100) not null,

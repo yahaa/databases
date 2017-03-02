@@ -83,7 +83,7 @@ alter table crouse add index2(crouse_name);
 先用Java 生成 1000万条记录保存到 本地 命名为 data.csv
 
 用如下命令导数数据到学生表
-load data infile '/var/log/test.csv' into table `student` 
+load data infile '/var/log/test.csv' into table `s` 
 fields terminated by ',' optionally enclosed by '"' escaped by '"' 
 lines terminated by '\n'; 
 
@@ -96,6 +96,29 @@ select student_id from student where not exists
 (select select_table.student_id from  open_crouse left join select_table  on open_crouse.crouse_id=select_table.crouse_id 
 where open_crouse.crouse_id in (select crouse_id from open_crouse) and open_crouse.crouse_id 
 not in (select crouse_id from select_table where student_id=select_table.student_id))
+
+
+实验三
+
+select s.xh ,s.xm,e.kh,e.xq from s left outer join e on s.xh=e.xh;
+
+select xh,xm from s where not exists(
+	select * from o where not exists(select * from e where s.xh=e.xh and o.kh=e.kh)
+);
+
+select xh,xm from s where xh!='1106' and not 
+exists(select * from e x where x.xh='1106' and not 
+	exists(select * from e y where s.xh=y.xh and x.kh=y.kh));
+
+
+select e.kh,s.xh,s.xm,e.zpcj from s,e where s.xh=e.xh and e.zpcj in (select max(zpcj) from e group by kh);
+
+select s.xh,s.xm,e.zpcj from s,e ,(select kh,avg(zpcj) as 'pj' from e group by kh ) tmp
+where e.xh=s.xh and tmp.kh=e.kh and e.zpcj>tmp.pj and 
+year(2016)-year(s.csrq)<(select avg(year(2016)-year(s.csrq)) from s) order by s.csrq desc;
+
+
+
 
 
 

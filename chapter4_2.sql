@@ -52,6 +52,7 @@ select crouse_id from select_table where student_id!=(select student_id from stu
 select season ,crouse_id,crouse_time from open_crouse where work_id=(select work_id from teacher where name='马小红');
 //第四问
 
+
 select crouse_id,crouse_name,from crouse where crouse_id  in (select crouse_id, work_id from select_table where score_f>=60 and student_id in (select student_id from student where sex='男'));
 
 //第五问
@@ -60,3 +61,20 @@ select student_id,name from student where student_id >(select student_id from st
 //第六问
 
 select student_id ,name from student where student_id in (select distinct student_id from select_table where student_id in (select student_id from select_table where crouse_id='8305001') and student_id in (select student_id from select_table where crouse_id='8305002'));
+
+
+
+
+//实验二
+select xh,xm from s where xh like '11%' and (2016-year(csrq))>20 and xb='男';
+
+select distinct kh from c where kh not in(select kh from e,s where s.xm='刘晓明' and s.xh=e.xh);
+
+select distinct xq,kh,sksj from o,t where t.xm='马小红' and t.gh=o.gh;
+
+select c.kh,km ,t.xm from t,c,e,s,d where e.kh=c.kh and e.gh=t.gh and e.xh=s.xh and d.yxh=s.yxh and x.xb='男' and mc='计算机学院' and zpcj>60 and xl='教授';
+
+select x.xh,x.xm from s x,s y,s z where x.xh=y.xh and x.xh>z.xh and y.csrq >z.csrq and z.xh in
+(select xh from s where xm='张颖') and z.csrq in (select csrq from s where xm='张颖');
+
+select distinct s.xh,s.xm from s,e x,e y where x.xh=y.xh and x.kh='08305001' and y.kh='08305002' and s.xh=x.xh; 

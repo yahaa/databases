@@ -1,6 +1,6 @@
 第一步创建数据库
 
-create database spring_user default character set utf8 collate utf8_general_ci;
+create database ylook default character set utf8 collate utf8_general_ci;
 
 create table s(
 	sno int not null,
@@ -182,8 +182,9 @@ insert into student select sno,sname,sex from s where sno in
 
 
 
-
-
-
+for (var i=2002;i<2016;i++){
+	var url='http://www.ercot.com/content/gridinfo/load/load_hist/'+i+'_ERCOT_Hourly_Load_Data.xls';
+	windos.open(url);
+}
 
 
